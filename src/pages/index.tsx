@@ -1,28 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { type NextPage } from "next";
-import { Permanent_Marker } from "next/font/google";
 import Head from "next/head";
-import Link from "next/link";
-
-type PhotoType = {
-  albumId: number;
-  id: number;
-  title: string;
-  url: string;
-  thumbnailUrl: string;
-};
-
-const permMarker = Permanent_Marker({
-  weight: "400",
-  subsets: ["latin"],
-});
+import PhotoGrid from "~/Components/PhotoGrid";
+import { type PhotoType } from "~/types/Photo";
 
 const Home: NextPage = () => {
-  const {
-    isLoading,
-    error,
-    data: photos,
-  } = useQuery<PhotoType[]>({
+  const { data: photos } = useQuery<PhotoType[]>({
     queryKey: ["photoData"],
     queryFn: () =>
       fetch("https://jsonplaceholder.typicode.com/photos?albumId=3").then(
@@ -42,27 +25,8 @@ const Home: NextPage = () => {
           <h1 className="pb-6 text-4xl font-extrabold tracking-tight text-white sm:text-[5rem]">
             Deren <span className="text-[#006666]">Photo</span> Album
           </h1>
-          <div className="columns-1 space-y-4 sm:columns-2 md:columns-3">
-            {photos?.map((photo) => (
-              <Link
-                key={photo.id}
-                className="hover:tilt flex flex-col rounded-sm bg-slate-200 p-2 pb-8 duration-300 ease-in-out hover:-translate-y-3 hover:-rotate-1 hover:shadow-xl hover:shadow-black/40"
-                href={photo.url}
-                target="_blank"
-              >
-                <img
-                  className="h-full w-full"
-                  src={photo.url}
-                  alt={photo.thumbnailUrl}
-                  // width={150}
-                  // height={150}
-                />
-                <div className={`${permMarker.className} h-10 text-lg`}>
-                  {`${photo.id}) ${photo.title}`}
-                </div>
-              </Link>
-            ))}
-          </div>
+          <PhotoGrid photos={photos} />
+          {/* <MasonryGrid photos={photos} /> */}
         </div>
       </main>
     </>
