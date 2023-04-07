@@ -26,7 +26,7 @@ const Poloroid: React.FC<PoloroidProps> = ({ photo }) => {
         width={150}
         height={150}
       />
-      <div className={`${permMarker.className} h-24 text-lg`}>
+      <div className={`${permMarker.className} h-24 p-1 text-lg`}>
         {`${photo.id}) ${photo.title}`}
       </div>
     </Link>
