@@ -1,13 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import Link from "next/link";
 import { type PhotoType } from "~/types/Photo";
+
 import Poloroid from "./Poloroid";
 
-type PhotoGridProps = {
-  photos: PhotoType[] | undefined;
-};
+const PhotoGrid: React.FC = () => {
+  const { data: photos } = useQuery<PhotoType[]>({
+    queryKey: ["photoData"],
+    queryFn: () =>
+      fetch("https://jsonplaceholder.typicode.com/photos?albumId=3").then(
+        (res) => res.json()
+      ),
+  });
 
-const PhotoGrid: React.FC<PhotoGridProps> = ({ photos }) => {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
       {photos?.map((photo) => (

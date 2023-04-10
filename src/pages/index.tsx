@@ -1,18 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
 import { type NextPage } from "next";
 import Head from "next/head";
 import PhotoGrid from "~/Components/PhotoGrid";
-import { type PhotoType } from "~/types/Photo";
 
 const Home: NextPage = () => {
-  const { data: photos } = useQuery<PhotoType[]>({
-    queryKey: ["photoData"],
-    queryFn: () =>
-      fetch("https://jsonplaceholder.typicode.com/photos?albumId=3").then(
-        (res) => res.json()
-      ),
-  });
-
   return (
     <>
       <Head>
@@ -25,8 +15,7 @@ const Home: NextPage = () => {
           <h1 className="pb-6 text-4xl font-extrabold tracking-tight text-white sm:text-[5rem]">
             Deren <span className="text-[#006666]">Photo</span> Album
           </h1>
-          <PhotoGrid photos={photos} />
-          {/* <MasonryGrid photos={photos} /> */}
+          <PhotoGrid />
         </div>
       </main>
     </>
