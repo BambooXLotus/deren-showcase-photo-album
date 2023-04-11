@@ -12,7 +12,7 @@ const Home: NextPage = () => {
       </Head>
       <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-[#0ABAB5] to-[#15162c]">
         <div className="container flex flex-col items-center justify-center px-4 py-16">
-          <h1 className="pb-6 text-4xl font-extrabold tracking-tight text-white sm:text-[5rem]">
+          <h1 className="pb-8 text-4xl font-extrabold tracking-tight text-white sm:text-[5rem]">
             Deren <span className="text-[#006666]">Photo</span> Album
           </h1>
           <PhotoGrid />
