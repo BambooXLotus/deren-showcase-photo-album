@@ -1,7 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-
-import { PhotoGrid } from "../components/PhotoGrid";
+import PhotoGrid from "~/ui/PhotoGrid";
 
 const Home: NextPage = () => {
   return (
