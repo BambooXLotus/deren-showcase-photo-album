@@ -10,3 +10,9 @@
 
 - npm install
 - npm run dev
+
+## How to test
+
+(unit test with vitest)
+
+- npm run test
