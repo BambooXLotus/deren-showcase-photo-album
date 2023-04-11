@@ -3,7 +3,7 @@ import { type PhotoType } from "~/types/Photo";
 
 import Poloroid from "./Poloroid";
 
-const PhotoGrid: React.FC = () => {
+export const PhotoGrid: React.FC = () => {
   const { data: photos } = useQuery<PhotoType[]>({
     queryKey: ["photoData"],
     queryFn: () =>
@@ -20,5 +20,3 @@ const PhotoGrid: React.FC = () => {
     </div>
   );
 };
-
-export default PhotoGrid;
