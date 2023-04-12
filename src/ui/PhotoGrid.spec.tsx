@@ -49,7 +49,7 @@ beforeAll(() => server.listen());
 afterAll(() => server.close());
 
 describe("<PhotoGrid / >", () => {
-  it("should render successfully photo titles", () => {
+  it("should render photo id) title, image", async () => {
     render(
       <Wrapper>
         <PhotoGrid />
@@ -57,7 +57,13 @@ describe("<PhotoGrid / >", () => {
     );
 
     for (const photo of expectedPhotos) {
-      expect(screen.findByText(`${photo.id}) ${photo.title}`)).toBeTruthy();
+      expect(
+        await screen.findByText(`${photo.id}) ${photo.title}`)
+      ).toBeTruthy();
+      //test getting image by alt text
+      expect(screen.getByAltText(photo.thumbnailUrl));
     }
+
+    screen.debug();
   });
 });
